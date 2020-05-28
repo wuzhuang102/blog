@@ -80,3 +80,7 @@ Function.prototype.bind2 = function (context) {
     return fBound;
 }
 ```
+
+### 004. Promise
+
+[详细过程](/front-end/javascript/code/promise)

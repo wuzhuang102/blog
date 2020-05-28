@@ -1,12 +1,15 @@
 ## JS基本数据类型
+[最新的MDN文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+
+最新的ECMAScript定义了9种数据类型
 - 6种基本数据
     - Boolean
     - undefined
     - Number
-    - BigInt
     - String
-    - Symbol
-- null
+    - Symbol (ES6)
+    - BigInt (ES10)
+- null (typeof instance ===  'object')
 - Object
 - Function
 
@@ -16,7 +19,7 @@
 - List 和 Record：用于描述函数传参过程
 - Set：用于解释字符集等
 - Completion Record：描述异常、跳出等语句执行过程
-- Reference：用于描述对象属性访问，delete等 [Reference](/front-end/javascript/intergration/this的指向以及Reference)
+- Reference：用于描述对象属性访问，delete等 [Reference](/front-end/javascript/wiki/this的指向以及Reference)
 - Property Descriptor：描述对象的属性
 - Lexical Environment 和 Environment Record：用于描述变量和作用域
 - Data Block：用于描述二进制数据

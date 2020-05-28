@@ -12,26 +12,31 @@
 | ECMAScript版本        | 新增特性                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |:----------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ECMAScript 2016(ES7)  | 1. 数组的includes语法 <br>  2.Math.pow的简写语法                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ECMAScript 2017(ES8)  | 1. Async/Await <br> 2. Object.values <br> 3. Object.entries <br> 4. String.prototype.padStart <br> 5. String.prototype.padEnd <br> 6. 结尾允许逗号 <br> 7. Object.getOwnPropertyDescriptors <br> 8. SharedArrayBuffer <br> 8. Atomics                                                                                                                                                                                                                                         |
+| ECMAScript 2017(ES8)  | 1. Async/Await <br> 2. Object.values <br> 3. Object.entries <br> 4. String.prototype.padStart <br> 5. String.prototype.padEnd <br> 6. 结尾允许逗号 <br> 7. Object.getOwnPropertyDescriptors <br> 8. SharedArrayBuffer <br> 8. Atomics                                                                                                                                                                                                                                                  |
 | ECMAScript 2018(ES9)  | 1. 异步迭代器  <br> 2. Promise.finally <br> 3. Rest/Spread属性 <br> 4. 正则表达式命名捕获组 <br> 5. 正则表达式反向断言 <br>   6. dotAll 方式   <br> 7. 正则表达式Unicode转义 <br>    8. 非转义序列的模版字符串                                                                                                                                                                                                                                                                |
 | ECMAScript 2019(ES10) | 1. Array添加`flat()` 和 `flatMap()`方法 <br>    2. Object.fromEntries() <br> 3. String.prototype.matchAll <br>  4. `trimStart()`  和 `trimEnd()` <br>  5. Symbol.prototype.description <br>  6. 修改catch参数绑定    <br>   7. 行分隔符`\u2028`与段分隔符`\u2029`将允许出现在字符串中与JSON匹配 <br>   8. 更加友好的JSON.stringfy <br>   9. Array.prototype.sort <br>    10. Function.prototype.toString() <br>     11. BigInt -- 第七种基本数据类型 <br>      12. globalThis |
 
-### ES8
-<!-- 1. 
-2. 
-3. 
-4. 
-5. 
-6.  -->
-#### 7. Object.getOwnPropertyDescriptors
+## ES8
+### 1. Async/Await
+### 2. Object.values
+### 3. Object.entries
+`Object.entries()` 函数返回一个给定对象自身可枚举属性的键值对的数组。
+``` js
+Object.entries({name:1,desc:{age: 1}})
+// [['name',1],['desc': {age:1}]]
+```
+### 4. String.prototype.padStart
+### 5. String.prototype.padEnd
+### 6. 结尾允许逗号
+### 7. Object.getOwnPropertyDescriptors
 Object.getOwnPropertyDescriptors()函数用来获取一个对象的所有自身属性的描述符,如果没有任何自身属性，则返回空对象。
 #### 8. SharedArrayBuffer [SharedArrayBuffer MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer)
 SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区，类似于 ArrayBuffer 对象，它们都可以用来在共享内存（shared memory）上创建视图
-#### 9. Atomics
+### 9. Atomics
 Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象进行原子操作
 
-### ES9
-#### 1. 异步迭代器
+## ES9
+### 1. 异步迭代器
 ES9中允许我们在迭代器中使用 `async/await`
 ``` js
 async function process(array) {   
@@ -40,10 +45,25 @@ async function process(array) {
     }
 } 
 ```
-#### 2 Promise.finally
-#### 3. Rest/Spread 属性
+### 2 Promise.finally
+无论是否异常，最终都会执行的代码块
+``` js
+doSomething1()
+    .then(doSomething2)
+    .catch(err => {
+        console.log(err);
+    })
+    .finally(() => {
+        // finish here!
+    });
+```
 
-#### 4. 正则表达式命名捕获组
+### 3. Rest/Spread 属性
+ES6中的 `Rest/Spread` 只用于 数组
+
+ES9中的 `Rest/Spread` 用于数组和对象
+
+### 4. 正则表达式命名捕获组
 命名捕获组可以在`exec` `replace`中使用
 
 常用的正则表达式来解析日月年
@@ -66,7 +86,7 @@ const date_str = '2020-05-23',
     reg = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
 date_str.replace(reg, '$<year>/$<month>/$<day>')
 ```
-#### 5. 正则表达式反向（后行）断言 
+### 5. 正则表达式反向（后行）断言 
     
 - 肯定反向断言 `?<=` ,表示一个值必须存在
 ``` js
@@ -83,24 +103,24 @@ const str = '$123',
 console.log(match[0])  // 23
 ```
 
-#### 6. dotAll 方式
+### 6. dotAll 方式
 正则表达式中 `.` 匹配除回车以外的任何单字符，标记  `s` 可以改变这种规则，允许终止符的出现
 ``` js
 console.log(/./.test('\r\n))  // false
 console.log(/./s.test('\n))  // true
 console.log(/./s.test('\r))  // true
 ```
-#### 7. 正则表达式Unicode转义
+### 7. 正则表达式Unicode转义
 ES9之前匹配汉字等Unicode编码属性需要对应编码的范围集合，现阶段添加了Unicode属性转义，为`\p{...}`或`\P{...}`,正则中使用标记`u`
 ``` js
 const reg = /\p{Script=Han}/u
 console.log(reg.test('吴某人'))  // true
 ```
-#### 8. 非转义序列的模版字符串
+### 8. 非转义序列的模版字符串
 '\u{54}' 'C:\user\jackma' 等字符串会被浏览器自动转义，如果想输出非转义的可使用`String.raw`
 
-### ES10
-#### 1. Array添加`flat()` 和 `flatMap()`方法
+## ES10
+### 1. Array添加`flat()` 和 `flatMap()`方法
 - Array.prototype.flat()
 ``` js
 // flat可以拉平数组
@@ -130,14 +150,14 @@ arr2.flatMap(x => [x*2]) // [2,4,6,8]
 arr1.flatMap(x => [[x*2]]) // [[2],[4],[6],[8]]
 arr2.flatMap(x => [[x*2]]) // [[2],[4],[6],[8]]
 ```
-#### 2. Object.fromEntries()
+### 2. Object.fromEntries()
 `Object.fromEntries()`返回一个对象自身可枚举属性的键值对数组，其排列与`for..in`遍历对象时返回的顺序一致，区别在于`for..in`会枚举原型链中的属性
 - Map 转 Object
 ``` js
 const map = new Map([['name', 'wu'],['age', 18]])
 Object.fromEntries(map)   // {name: "wu", age: 18}
 ```
-#### 3. String.prototype.matchAll
+### 3. String.prototype.matchAll
 `matchAll`返回一个包含所有正则匹配表达式及捕获结果的迭代器
 
 在`matchAll`出现之前,只能通过循环 reg.exec()来获取所有匹配的信息
@@ -161,14 +181,14 @@ for(const res of match) {
 // ["wu", index: 8, input: "wuzhuangwuyongwuqing", groups: undefined]
 // ["wu", index: 14, input: "wuzhuangwuyongwuqing", groups: undefined]
 ```
-#### 4. `trimStart()`  和 `trimEnd()`
+### 4. `trimStart()`  和 `trimEnd()`
 - String.prototype.trimStart  去除前面的空字符串
 - String.prototype.trimEnd  去除尾部的空字符串
 
-#### 5. Symbol.prototype.description
+### 5. Symbol.prototype.description
 之前访问的方法是将符号转换成字符串
 
-#### 6. 修改catch参数绑定
+### 6. 修改catch参数绑定
 catch中的参数可以省略不写
 ``` js
 // 之前
@@ -177,28 +197,28 @@ try{}catch(e) {}
 // 现在
 try{}catch{}
 ```
-#### 7. 行分隔符`\u2028`与段分隔符`\u2029`将允许出现在字符串中与JSON匹配
+### 7. 行分隔符`\u2028`与段分隔符`\u2029`将允许出现在字符串中与JSON匹配
 仍在草案阶段
 ``` js
 const json = '{"name": "wuzhuang", "desc":"zhuang\ni"}'
 JSON.parse(json)  // 会报错,业务代码中使用需要try catch处理以防影响程序运行
 ```
-#### 8. 更加友好的JSON.stringfy
+### 8. 更加友好的JSON.stringfy
 如果输入 Unicode 格式但是超出范围的字符，在原先JSON.stringify返回格式错误的Unicode字符串。现在实现了一个改变JSON.stringify的第3阶段提案，因此它为其输出转义序列，使其成为有效Unicode（并以UTF-8表示
 ``` js
 // 我们期望它返回的是'"\\UDEAD"',然而现阶段是""UDEAD""
 JSON.stringify('\UDEAD')  //  ""UDEAD""
 ```
-#### 9. Array.prototype.sort
+### 9. Array.prototype.sort
 - 小于10的时候，用的是快速排序，快速排序是一种不稳定的排序 O(n^2)
 - 新的v8 TimSort(),一种混合排序  o(nlogn)
-#### 10. Function.prototype.toString()
+### 10. Function.prototype.toString()
 返回精确字符，包括空格与注释
-#### 11. BigInt -- 第七种基本数据类型
+### 11. BigInt -- 第七种基本数据类型
 ``` js
 Number.MAX_SAFE_INTEGER   // 9007199254740991
 ```
-#### 12. globalThis 
+### 12. globalThis 
 - 可以在任何平台访问全局对象
     - chrome 71+   globalThis === window
     - node 12+    globalThis === global

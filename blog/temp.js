@@ -1,31 +1,35 @@
-function SelectionSort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let min_index = i
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[j] < arr[min_index]) {
-                min_index = j
-            }
-        }
-        let tmp = arr[i]
-        arr[i] = arr[min_index]
-        arr[min_index] = tmp
-    }
-    return arr
-}
+const PENDING = "PENDING",
+    FULFILLED = "FULFILLED",
+    REJECTED = "REJECTED"
 
-function unique(arr, is_sorted) {
-    var arr_res = []
-    if (is_sorted) {
-        for (var i = 0; i < arr.length; i++) {
-            if (!i || arr[i] !== arr[i]) {
-                arr_res.push(arr[i])
-            }
+class MyPromise {
+    constructor(fn) {
+        this.state = PENDING;
+        this.value = undefined;
+        this.resolveCallbacks = [];
+        const resolve = (val) => {
+            setTimeout(() => {
+                if (this.state === PENDING) {
+                    this.state = FULFILLED
+                    this.value = val
+                    this.resolveCallbacks.map(fn => fn(val))
+                }
+            })
         }
-    } else {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr_res.indexOf(arr[i]) === -1) {
-                arr_res.push(arr[i])
-            }
+        const reject = val => {
+            this.value = val
+            this.state = REJECTED
+        }
+        fn(resolve, reject)
+    }
+
+    then(onFulfilled = val => val) {
+        if (this.state === PENDING) {
+            return new MyPromise((resolve, reject) => {
+                this.resolveCallbacks.push(() => {
+                    resolve(onFulfilled(this.value))
+                })
+            })
         }
     }
 }

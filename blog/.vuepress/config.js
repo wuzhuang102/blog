@@ -1,11 +1,13 @@
 module.exports = {
     title: '你当像鸟飞往你的山',
+    head: [["link", { rel: "icon", href: "/avatar.jpg" }]],
     themeConfig: {
         nav: [
             { text: '主页', link: '/' },
-            { text: '前端', link: '/front-end/http/' },
+            { text: '前端', link: '/front-end/' },
             { text: '算法', link: '/algorithm/' },
-            { text: '软件', link: '/software/' }
+            { text: '软件', link: '/software/' },
+            { text: '阅读', link: '/book/' }
         ],
         sidebarDepth: 2,
         sidebar: {
@@ -17,7 +19,7 @@ module.exports = {
                     children: [
                         ['/front-end/http/', 'http简介'],
                         ['/front-end/http/cache', '缓存篇'],
-                        ['/front-end/http/cookie','cookie']
+                        ['/front-end/http/cookie', 'cookie']
                     ]
                 },
                 {
@@ -32,10 +34,10 @@ module.exports = {
                     title: 'JavaScript',
                     collapsable: false, // 可折叠
                     children: [
-                        ['/front-end/javascript/','javascript基本篇'], // 你的md文件地址
-                        ['/front-end/javascript/intergration','深入内容整合'],
-                        ['/front-end/javascript/code-implementation','手写代码实现篇'],
-                        ['/front-end/javascript/version','javascript版本篇'],
+                        ['/front-end/javascript/', '基本篇'], // 你的md文件地址
+                        ['/front-end/javascript/intergration', '深入篇'],
+                        ['/front-end/javascript/code-implementation', '代码篇'],
+                        ['/front-end/javascript/version', '版本篇'],
                     ]
                 },
                 {
@@ -56,7 +58,6 @@ module.exports = {
                         ['/algorithm/base/introduction-algorithm', '算法概论'],
                         ['/algorithm/base/sort', '排序算法'],
                         ['/algorithm/base/search', '查找算法']
-
                     ]
                 },
                 {
@@ -103,6 +104,17 @@ module.exports = {
                         ['/software/', '软件问题'],
                         ['/software/other/软件推荐', '软件推荐'],
                         ['/software/other/mac破解软件', 'mac软件问题']
+                    ]
+                }
+            ],
+            '/book/': [
+                {
+                    title: '技术类',
+                    collapsable: false,
+                    children: [
+                        ['/book/code/you_dont_know_javascript_1','你不知道的JavaScript(上)'],
+                        ['/book/code/you_dont_know_javascript_2','你不知道的JavaScript(中)'],
+                        ['/book/code/you_dont_know_javascript_3','你不知道的JavaScript(下)']
                     ]
                 }
             ]

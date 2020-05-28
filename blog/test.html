@@ -1,1 +1,27 @@
-1111
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./temp.js"></script>
+
+
+    <script>
+
+        
+var promise = new MyPromise((resolve, reject) => {
+    resolve('step4')
+}).then(res => {
+    console.log('接收到的数据：', res)
+    return 'step4.1'
+}).then().then(res => {
+    console.log('接收到的数据：', res)
+})
+       
+    </script>
+    
+</body>
+</html>
