@@ -112,12 +112,21 @@ module.exports = {
                     title: '技术类',
                     collapsable: false,
                     children: [
-                        ['/book/code/you_dont_know_javascript_1','你不知道的JavaScript(上)'],
-                        ['/book/code/you_dont_know_javascript_2','你不知道的JavaScript(中)'],
-                        ['/book/code/you_dont_know_javascript_3','你不知道的JavaScript(下)']
+                        ['/book/code/you_dont_know_javascript_1', '你不知道的JavaScript(上)'],
+                        ['/book/code/you_dont_know_javascript_2', '你不知道的JavaScript(中)'],
+                        ['/book/code/you_dont_know_javascript_3', '你不知道的JavaScript(下)']
                     ]
                 }
             ]
+        },
+        // docsDir: "blog"
+    },
+   
+    configureWebpack: (config, isServer) => {
+        // console.log(111)
+        if (!isServer) {
+            // 修改客户端的 webpack 配置
+            // console.log(config)
         }
     }
 }
