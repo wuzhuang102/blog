@@ -4,7 +4,7 @@ heroImage: /avatar.jpg
 heroText: 你当像鸟飞往你的山
 tagline: jack_wu
 actionText: 马上开始 →
-# actionLink: /algorithm/每日一题
+actionLink: /algorithm/每日一题
 # features:
 # - title: 简洁至上
 #   details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。

@@ -1,12 +1,15 @@
 module.exports = {
     title: '你当像鸟飞往你的山',
     head: [["link", { rel: "icon", href: "/avatar.jpg" }]],
+    markdown: {
+        extractHeaders: ['h2', 'h3', 'h4']
+    },
     themeConfig: {
         nav: [
             { text: '主页', link: '/' },
             { text: '前端', link: '/front-end/' },
             { text: '算法', link: '/algorithm/' },
-            { text: '软件', link: '/software/' },
+            { text: '工具', link: '/tool/' },
             { text: '阅读', link: '/book/' }
         ],
         sidebarDepth: 2,
@@ -73,37 +76,44 @@ module.exports = {
                     path: '/algorithm/subject/collection'
                 }
             ],
-            '/software/': [
+            '/tool/': [
+                {
+                    title: 'Linux',
+                    collapsable: false,
+                    children: [
+                        ['/tool/linux/base', 'Linux基本知识']
+                    ]
+                },
                 {
                     title: 'Docker',
                     collapsable: false,
                     children: [
-                        ['/software/docker/', 'docker']
+                        ['/tool/docker/', 'docker']
                     ]
                 },
                 {
                     title: 'Git',
                     collapsable: false,
                     children: [
-                        ['/software/git/', 'git']
+                        ['/tool/git/', 'git']
                     ]
                 },
                 {
                     title: 'Nginx',
                     collapsable: false,
                     children: [
-                        ['/software/nginx/', 'nginx基本配置'],
-                        ['/software/nginx/location', 'core - location'],
-                        ['/software/nginx/rewrite', 'module - rewrite']
+                        ['/tool/nginx/', 'nginx基本配置'],
+                        ['/tool/nginx/location', 'core - location'],
+                        ['/tool/nginx/rewrite', 'module - rewrite']
                     ]
                 },
                 {
                     title: '办公软件',
                     collapsable: false,
                     children: [
-                        ['/software/', '软件问题'],
-                        ['/software/other/软件推荐', '软件推荐'],
-                        ['/software/other/mac破解软件', 'mac软件问题']
+                        ['/tool/', '软件问题'],
+                        ['/tool/other/软件推荐', '软件推荐'],
+                        ['/tool/other/mac破解软件', 'mac软件问题']
                     ]
                 }
             ],
@@ -114,19 +124,11 @@ module.exports = {
                     children: [
                         ['/book/code/you_dont_know_javascript_1', '你不知道的JavaScript(上)'],
                         ['/book/code/you_dont_know_javascript_2', '你不知道的JavaScript(中)'],
-                        ['/book/code/you_dont_know_javascript_3', '你不知道的JavaScript(下)']
+                        ['/book/code/you_dont_know_javascript_3', '你不知道的JavaScript(下)'],
+                        ['/book/code/learning_javascript_data_structure_and_algorithms', '学习JavaScript数据结构与算法']
                     ]
                 }
             ]
-        },
-        // docsDir: "blog"
-    },
-   
-    configureWebpack: (config, isServer) => {
-        // console.log(111)
-        if (!isServer) {
-            // 修改客户端的 webpack 配置
-            // console.log(config)
         }
     }
 }
