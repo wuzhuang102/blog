@@ -5,7 +5,6 @@
 
 
 ## 专题篇
-[函数式编程](/front-end/javascript/wiki/functional-programming)
 
 [防抖与节流](/front-end/javascript/wiki/防抖与节流)
 

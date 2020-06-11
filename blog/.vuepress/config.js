@@ -2,7 +2,7 @@ module.exports = {
     title: '你当像鸟飞往你的山',
     head: [["link", { rel: "icon", href: "/avatar.jpg" }]],
     markdown: {
-        extractHeaders: ['h2', 'h3', 'h4']
+        extractHeaders: ['h2', 'h3']
     },
     themeConfig: {
         nav: [
@@ -48,6 +48,14 @@ module.exports = {
                     collapsable: false,
                     children: [
                         ['/front-end/css/', 'css']
+                    ]
+                },
+                {
+                    title: '前端专题',
+                    collapsable: false,
+                    children: [
+                        ['/front-end/special/functional-programming','JavaScript函数式编程'],
+                        ['/front-end/special/qa','前端测试']
                     ]
                 }
             ],

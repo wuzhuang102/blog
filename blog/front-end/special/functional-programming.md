@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # 函数式编程
 
 [轻量级函数式编程](https://juejin.im/post/5a2f93666fb9a045132aaaa1)  
@@ -158,5 +154,15 @@ readFile('./user.txt').flatMap(tail).flatMap(print)
 
 `readFile` 是纯函数，返回的是一个` IO` 函子，`flatMap` 返回的也是一个IO函子，这样就可有一直链式调用下去，用上一个 `flatMap` 的输出作为下一个 `flatMap` 中函数的输入
 
-## 3. 其他函数式编程术语
-[函数式编程术语](https://github.com/shfshanyue/fp-jargon-zh)
+## 3. 函数式编程专业术语
+较详细的 [函数式编程术语](https://github.com/shfshanyue/fp-jargon-zh)
+### 3.1 纯函数
+纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+- **优点**
+    - 可缓存
+    - 可移植/自文档化
+    - 可测试性
+    - 合理性
+    - 并行代码
+
+### 3.2 柯里化
