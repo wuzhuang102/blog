@@ -6,7 +6,7 @@ function request() {
     return superagent(app.listen())
 }
 
-describe('NodeUii 自动化脚本', function() {
+describe('自动化脚本', function() {
     it('获取后台接口数据', function(done) {
         request()
             .get('/')

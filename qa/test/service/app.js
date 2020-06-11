@@ -3,7 +3,7 @@ const app = new Koa()
 
 app.use(async (ctx) => {
     ctx.body = {
-        data: '吴壮'
+        data: '刁民'
     }
 })
 

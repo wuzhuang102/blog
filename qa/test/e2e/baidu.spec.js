@@ -5,7 +5,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
     try {
         await driver.get('https://baidu.com');
         await driver.findElement(By.name('wd')).sendKeys('吴壮', Key.RETURN);
-        await driver.wait(until.titleIs('吴壮 - 百搜索'), 1000);
+        await driver.wait(until.titleIs('吴壮_百搜索'), 1000);
     } finally {
         await driver.quit();
     }
