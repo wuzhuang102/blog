@@ -9,30 +9,14 @@ module.exports = {
             { text: '主页', link: '/' },
             { text: '前端', link: '/front-end/' },
             { text: '算法', link: '/algorithm/' },
-            { text: '工具', link: '/tool/' },
+            { text: '常用技术', link: '/tool/' },
             { text: '阅读', link: '/book/' }
         ],
         sidebarDepth: 2,
         sidebar: {
             // 前端篇
             '/front-end/': [
-                {
-                    title: 'HTTP',
-                    collapsable: false,
-                    children: [
-                        ['/front-end/http/', 'http简介'],
-                        ['/front-end/http/cache', '缓存篇'],
-                        ['/front-end/http/cookie', 'cookie']
-                    ]
-                },
-                {
-                    title: 'HTML',
-                    collapsable: false,
-                    children: [
-                        ['/front-end/html/', 'HTML'],
-                        ['/front-end/html/meta', 'meta']
-                    ]
-                },
+                
                 {
                     title: 'JavaScript',
                     collapsable: false, // 可折叠
@@ -44,18 +28,48 @@ module.exports = {
                     ]
                 },
                 {
+                    title: 'HTML',
+                    collapsable: true,
+                    children: [
+                        ['/front-end/html/', 'HTML'],
+                        ['/front-end/html/meta', 'meta']
+                    ]
+                },
+                {
                     title: 'CSS',
-                    collapsable: false,
+                    collapsable: true,
                     children: [
                         ['/front-end/css/', 'css']
+                    ]
+                },
+                {
+                    title: 'Node',
+                    collapsable: false,
+                    children: [
+                        ['/front-end/node/', 'Node基本知识'],
+                        ['/front-end/node/memory','内存与垃圾回收'],
+                        '/front-end/node/source-code-1'
                     ]
                 },
                 {
                     title: '前端专题',
                     collapsable: false,
                     children: [
-                        ['/front-end/special/functional-programming','JavaScript函数式编程'],
-                        ['/front-end/special/qa','前端测试']
+                        ['/front-end/special/functional-programming', 'JavaScript函数式编程'],
+                        ['/front-end/special/qa', '前端测试']
+                    ]
+                },
+                {
+                    title: 'HTTP',
+                    collapsable: false,
+                    children: [
+                        ['/front-end/http/','HTTP简介'],
+                        ['/front-end/http/header','HTTP -- 头'],
+                        ['/front-end/http/status-code', 'HTTP -- 状态码'],
+                        ['/front-end/http/cache', 'HTTP -- 缓存篇'],
+                        ['/front-end/http/cookie', 'cookie'],
+                        ['/front-end/http/http2','HTTP2'],
+                        ['/front-end/http/https','HTTPS']
                     ]
                 }
             ],
@@ -113,6 +127,20 @@ module.exports = {
                         ['/tool/nginx/', 'nginx基本配置'],
                         ['/tool/nginx/location', 'core - location'],
                         ['/tool/nginx/rewrite', 'module - rewrite']
+                    ]
+                },
+                {
+                    title: 'Mysql',
+                    collapsable: false,
+                    children: [
+                        ['/tool/mysql/', 'mysql基本知识'],
+                    ]
+                },
+                {
+                    title: 'PHP',
+                    collapsable: false,
+                    children: [
+                        ['/tool/php/', 'php基本语法']
                     ]
                 },
                 {

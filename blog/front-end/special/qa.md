@@ -167,7 +167,7 @@ node baidu.spec.js
 程序会打开指定的浏览器进行指令操作
 
 ### rize + puppeteer 实战
-`puppeteer` 是 `Rize` 的一个 peer dependency,因此使用rize的时候，puppteer也需要被安装
+`puppeteer` 是 `Rize` 的一个 peer dependency,因此使用rize的时候，puppteer也需要被安装 [rize文档](https://rize.js.org/zh-CN/)
 
 **第一步：** 安装依赖
 ``` bash

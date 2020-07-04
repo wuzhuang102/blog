@@ -9,7 +9,7 @@
     "dev": "vuepress dev blog",
     "build": "vuepress build blog",
     "commit": "npx git-cz",
-    "deploy":"bash deploy.sh"
+    "deploy": "bash deploy.sh"
   },
   "husky": {
     "hooks": {
