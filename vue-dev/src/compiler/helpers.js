@@ -10,7 +10,7 @@ export function baseWarn(msg: string, range?: Range) {
     console.error(`[Vue compiler]: ${msg}`)
 }
 /* eslint-enable no-unused-vars */
-
+// 数组项中 对应 key 的集合
 export function pluckModuleFunction<F: Function>(
     modules: ?Array<Object>,
     key: string
@@ -166,9 +166,12 @@ export function getBindingAttr(
     const dynamicValue =
         getAndRemoveAttr(el, ':' + name) ||
         getAndRemoveAttr(el, 'v-bind:' + name)
-    if (dynamicValue != null) {
+    // 静态绑值
+    if (dynamicValue != null) 
         return parseFilters(dynamicValue)
-    } else if (getStatic !== false) {
+    } 
+    // 静态绑值
+    else if (getStatic !== false) {
         const staticValue = getAndRemoveAttr(el, name)
         if (staticValue != null) {
             return JSON.stringify(staticValue)

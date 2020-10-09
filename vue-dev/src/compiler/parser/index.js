@@ -76,6 +76,16 @@ export function createASTElement(
 /**
  * Convert HTML string to AST.
  */
+
+//  这是一个options的取值，当然他还有很多其它的属性，调试时通过 __proto__查看
+// options = {
+//     comments: undefined,
+//     delimiters: undefined,
+//     outputSourceRange: true,
+//     shouldDecodeNewlines: false,
+//     shouldDecodeNewlinesForHref: false,
+//     warn: ƒ (msg, range, tip)
+// }
 export function parse(
     template: string,
     options: CompilerOptions
@@ -103,6 +113,7 @@ export function parse(
     let inPre = false
     let warned = false
 
+    // 一次只提示一个错误
     function warnOnce(msg, range) {
         if (!warned) {
             warned = true
@@ -399,6 +410,7 @@ export function parse(
     return root
 }
 
+//  处理 v-pre
 function processPre(el) {
     if (getAndRemoveAttr(el, 'v-pre') != null) {
         el.pre = true
@@ -451,6 +463,7 @@ export function processElement(
     return element
 }
 
+// 提取 key
 function processKey(el) {
     const exp = getBindingAttr(el, 'key')
     if (exp) {
@@ -478,6 +491,7 @@ function processKey(el) {
     }
 }
 
+// 提取ref
 function processRef(el) {
     const ref = getBindingAttr(el, 'ref')
     if (ref) {
@@ -508,6 +522,7 @@ type ForParseResult = {
     iterator2?: string;
 };
 
+// 匹配 v-for 中的 alias、index 以及 遍历对象 (v-for="(item,index) in list"")
 export function parseFor(exp: string): ?ForParseResult {
     const inMatch = exp.match(forAliasRE)
     if (!inMatch) return
@@ -892,6 +907,7 @@ function processAttrs(el) {
     }
 }
 
+// 递归查找是否处于 v-for 下
 function checkInFor(el: ASTElement): boolean {
     let parent = el
     while (parent) {

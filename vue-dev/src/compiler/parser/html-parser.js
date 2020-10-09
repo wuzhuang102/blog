@@ -24,12 +24,13 @@ const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`)
 const doctype = /^<!DOCTYPE [^>]+>/i
 // #7298: escape - to avoid being passed as HTML comment when inlined in page
 const comment = /^<!\--/
-const conditionalComment = /^<!\[/
+const conditionalComment = /^<!\[/  // IE 的if 注释比较特殊
 
 // Special Elements (can contain anything)
 export const isPlainTextElement = makeMap('script,style,textarea', true)
 const reCache = {}
 
+// 转义表
 const decodingMap = {
     '&lt;': '<',
     '&gt;': '>',
@@ -61,6 +62,7 @@ export function parseHTML(html, options) {
     while (html) {
         last = html
         // Make sure we're not in a plaintext content element like script/style
+        // 保证 lastTag 不是纯文本标签  'script,style,textarea'
         if (!lastTag || !isPlainTextElement(lastTag)) {
             let textEnd = html.indexOf('<')
             if (textEnd === 0) {
