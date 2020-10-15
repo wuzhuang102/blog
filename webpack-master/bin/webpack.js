@@ -66,11 +66,10 @@ if (!cli.installed) {
 
 	const notify =
 		"CLI for webpack must be installed.\n" + `  ${cli.name} (${cli.url})\n`;
-
 	console.error(notify);
 
+	// 有 yarn 就使用 yarn 安装
 	const isYarn = fs.existsSync(path.resolve(process.cwd(), "yarn.lock"));
-
 	const packageManager = isYarn ? "yarn" : "npm";
 	const installOptions = [isYarn ? "add" : "install", "-D"];
 
@@ -81,7 +80,6 @@ if (!cli.installed) {
 	);
 
 	const question = `Do you want to install 'webpack-cli' (yes/no): `;
-
 	const questionInterface = readLine.createInterface({
 		input: process.stdin,
 		output: process.stderr
@@ -90,6 +88,7 @@ if (!cli.installed) {
 	// In certain scenarios (e.g. when STDIN is not in terminal mode), the callback function will not be
 	// executed. Setting the exit code here to ensure the script exits correctly in those cases. The callback
 	// function is responsible for clearing the exit code if the user wishes to install webpack-cli.
+	// 这一步是交互步骤，y 表示安装自动 cli
 	process.exitCode = 1;
 	questionInterface.question(question, answer => {
 		questionInterface.close();
