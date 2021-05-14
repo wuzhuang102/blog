@@ -1,4 +1,4 @@
-# JavaScript版本篇
+# 基础篇 --- JavaScript版本
 
 ## 提案到入选ECMA规范
 - Stage 0: strawman - 最初想法提交

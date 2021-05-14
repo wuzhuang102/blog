@@ -10,11 +10,8 @@ ECMAScript 将 Reference 定义为被解析的命名绑定（resolved name bindi
 - 创建Reference的两种方法
     - 标识符解析
     - 属性访问
-
-
-
 - 每个被创建的Reference都会拥有base、name、strict三个属性
-    - base 为property对象或环境纪律(environment record)
+    - base 为property对象或环境记录(environment record)
     - propertyName 为标识符或属性名
     - strict 表示是否开启了严格模式
 - Reference 规范还提供了获取其组成部分的方法(这个是js底层实现上，在真正的js代码中是没有这些方法的)[8.7The Reference Specification Type](https://es5.github.io/#x8.7)

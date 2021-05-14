@@ -1,12 +1,21 @@
-``` bash
-server {
+``` sh
+http {
+    server {
+        listen 80;
+        sever_name bestwuzhuang.com;
+        location / {
+            proxy_pass http://127.0.0.1:8080;
+        }
+        # location * {}
+    }
 
-
+    # server
 }
+
 ```
 
 
-## 1.  在前端中的功用
+## 在前端中的功用
 [参考博文](https://juejin.im/post/5bacbd395188255c8d0fd4b2)
 ### 1.1 简单的访问限制
 ``` nginx
@@ -135,5 +144,47 @@ server {
         location ^~ /local/ {
             root $root;
         }
+}
+```
+
+## 一些简单的配置
+### 1. 静态资源访问
+``` nginx
+server {
+    listen  80;
+    server_name	xxx.bestwuzhuang.com;
+    gzip on;
+    gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript ;
+    gzip_min_length 1k;  # 1k以下不压缩
+    gzip_comp_level 4;  # 1~9
+    # nginx对于静态文件的处理模块，开启后会寻找以.gz结尾的文件，直接返回，不会占用cpu进行压缩，如果找不到则不进行压缩
+    gzip_static on|off;   
+    gzip_vary on;
+    location / {
+        root    /etc/nginx/html/web;        # 静态资源根路径
+        try_files $uri $uri/ /index.html;  # 单页应用需要配置
+    }
+}
+```
+### 2. 缓存配置
+``` nginx
+location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js)$ {
+    root   /mnt/dat1/test/tes-app;
+
+    # add_header Cache-Control max-age=3600;
+    expires 30d;  # 强缓存
+    etag on;
+    
+}
+```
+### 3. 服务反向代理
+``` nginx
+server {
+	listen		80;
+	server_name	xxx.bestwuzhuang.com;
+	gzip on;
+	location / {
+		proxy_pass http://127.0.0.1:3000;
+	}
 }
 ```

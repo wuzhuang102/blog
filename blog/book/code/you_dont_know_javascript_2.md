@@ -21,5 +21,18 @@
 var a = null;
 (!a && typeof a === "object"); // true
 ```
-
 `typeof function(){} === 'function'`，函数是 `Object` 的一个子类型，他还拥有属性length，表示的是参数的个数
+### 1.3 值和类型
+JavaScript 中的变量是没有类型的，只有值才有
+
+可以利用 typeof 的安全防范机制
+``` js
+// 这样会抛出错误 
+if (DEBUG) {
+    console.log( "Debugging is starting" ); 
+}
+// 这样是安全的
+if (typeof DEBUG !== "undefined") {
+    console.log( "Debugging is starting" ); 
+}
+```

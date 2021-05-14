@@ -767,6 +767,264 @@ class SortedLinkedList extends LinkedList {
 ### 6.5 StackLinkedList
 我们还可以使用 LinkedList 类及其变种作为内部的数据结构来创建其他数据结构，例如栈、队列和双向队列
 
+## 7. 集合
+### 7.1 构建数据集合
+集合是一组无序且唯一的项组成的
+### 7.2 创建集合类
+``` js
+class Set {
+    constructor() {
+        this.items = {}
+    }
+
+    has(element) {
+        return element in this.items
+    }
+
+    add(element) {
+        if(!this.has(element)) {
+            this.items[element] = element
+            return true
+        }
+        return false
+    }
+
+    delete() {
+        if(this.has(element)) {
+            delete this.items[element]
+            return true
+        }
+        return false
+    }
+
+    clear() {
+        this.items = {}
+    }
+
+    size() {
+        return Object.keys(this.items).length
+    }
+
+    values() {
+        return Object.values(this.items)
+    }
+}
+```
+### 7.3 集合的运算
+#### 7.3.1 并集
+#### 7.3.2 交集
+#### 7.3.3 差集
+#### 7.3.4 子集
+### 7.4 ECMAScript 2015 --- Set类
+ES2015 中的 Set类含有 add、has、values、delete 等方法
+
+ES2015 中含有一个size属性，它的 values 方法返回一个 Iterator 
+
+## 8 字典和散列表
+### 8.1 字典
+集合以[值，值]的形式存储元素，字典以[键，值]的形式存储元素，字典也称作 映射、符号、关联数组
+
+字典对应 ES6 中的 Map
+### 8.2 散列表
+散列算法的作用是尽可能快地在数据结构中找到一个值：一般的，在数据结构中要获得一个值，需要迭代整个数据结构来找到它。如果使用散列函数（给定一个键值，然后返回值在表中的地址），就能知道值具体的位置，从而快速检索到该值。
+
+散列表与字典的区别在于用值的hash值当作key来存储
+### 8.3 ES2015 Map类
+ES2015 的 values 和 keys 方法都会返回 Iterator
+### 8.4 WeakMap 与 WeakSet
+- WeakMap 与 WeakSet 没有 entries、keys、values 等方法，它们是弱化的 Map 与 Set，主要是为了性能
+- 只能用对象作为键，使得 GC 可以从中清除整个入口
+
+## 9. 递归
+### 9.1 理解递归
+递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题，递归通常涉及函数的自身调用
+### 9.2 计算一个阶乘
+``` js
+function factorialInterative(number) {
+    if(number === 1 || number === 0) { return 1 }
+    return n * factorialInterative(n-1)
+}
+```
+#### 1. 调用栈
+每当 一个函数被一个算法调用时，该函数会进入调用栈的顶部。当使用递归的时候，每个函数调用都 会堆叠在调用栈的顶部，这是因为每个调用都可能依赖前一个调用的结果。
+#### 2. JavaScript 调用栈大小的限制
+以下代码可以检测浏览器最大调用栈
+``` js
+let i = 0; 
+function recursiveFn() {
+    i++;
+    recursiveFn();
+}
+try {
+    recursiveFn();
+} catch (ex) {
+    console.log('i = ' + i + ' error: ' + ex);
+}
+```
+
+ES2015 有**尾调用优化**，如果函数内的最后一个操作是调用函数，会通过跳转指令而不是子程序调用
+### 9.3 斐波那契数列
+#### 9.3.1 迭代
+- 位置 0 的斐波那契数是零。
+- 1和 2的斐波那契数是 1。
+- n(此处 n > 2)的斐波那契数是(n - 1)的斐波那契数加上(n - 2)的斐波那契数。
+``` js
+function fibonacciIterative(n) {
+    if(n === 0) return 0
+    if(n <= 2) return 1
+    return fibonacciIterative(n-1) + fibonacciIterative(n-2)
+}
+```
+#### 9.3.2 记忆
+```js
+function fibonacciIterative(n,memory = {}) {
+    if(n < 2) return n
+    if(!memory[n]) {
+        memory[n] = fibonacciIterative(n-1,memory) + fibonacciIterative(n-2, memory)
+    }
+    return memory[n]
+}
+```
+### 9.4 为什么使用递归
+迭代 的版本要比 递归 的版本快很多，但是递归版本更容易理解，需要的代码通常更少。另外，对一些算法来说，迭代的解法可能不可用， 3 而且有了尾调用优化，递归的多余消耗甚至可能被消除。
+
+## 10. 树
+### 10.2 树的相关术语
+- 位于树顶部的节点叫作**根节点**
+- 节点的一个属性是**深度**，节点的深度取决于它的祖先节点的数量
+- **子树**由节点和它的后代构成
+- 树的高度取决于所有节点深度的最大值
+### 10.3 二叉树和二叉搜索树
+- **二叉树**中的节点最多只能有两个子节点
+- **二叉搜索树(BST)**允许你在左侧节点存储比父节点小的值，右节点存储比父节点大的值
+#### 10.3.1 创建 BinarySearchTree 类
+``` js
+class Node {
+    constructor(key, left, right) {
+        this.key = key
+        this.left = left === undefined ? null : left
+        this.right = right === undefined ? null : right
+    }
+}
+```
+### 10.4 树的遍历
+遍历一颗树是指访问树的每个节点并对它们进行某种操作的过程
+#### 10.4.1 中序遍历
+#### 10.4.2 先序遍历
+#### 10.4.3 后序遍历
+
+
+## 11. 二叉堆和堆排序
+### 11.1 二叉堆数据结构
+二叉堆是一种特殊的二叉树
+- 是一颗完全二叉树，表示树的每一层都有左侧和右侧子节点（除最后一层的叶节点），并且最后一层的叶节点尽可能都是左侧子节点
+- 二叉堆不是最小堆就是最大堆。最小堆允许你快速导出树的最小值，最大堆允许你快速导出树的最大值。
+#### 11.1.1 创建最小堆类
+``` js
+const Compare = { LESS_THAN: -1, BIGGER_THAN: 1 };
+function defaultCompare(a, b) {
+    if (a === b) {
+        return 0;
+    }
+    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
+}
+
+class MinHeap {
+    constructor(compareFn = defaultCompare) {
+        this.compareFn = compareFn
+        this.heap = []
+    }
+
+    getLeftIndex(index) {
+        return 2 * index + 1
+    }
+
+    getRightIndex(index) {
+        return 2 * index + 2
+    }
+
+    getParentIndex(index) {
+        if (index === 0) return undefined
+        return Math.floor(index / 2)
+    }
+
+    insert(value) {
+        if (value != null) {
+            this.heap.push(value)
+            this.siftUp(this.heap.length - 1)
+            return true
+        }
+        return false
+    }
+
+    extract() {  // 移除堆顶元素
+        if (this.isEmpty()) return undefined
+        if (this.size() === 1) return this.heap.shift()
+        const removeValue = this.heap.shift()
+        this.siftDown(0)
+        return removeValue
+    }
+
+    siftUp(index) {  // 数据上移：将值和它的父节点进行交换，直到父节点小于这个插入的值
+        let parent = this.getParentIndex(index)
+        while (index > 0 && this.compareFn(this.heap[parent], this.heap[index]) > Compare.BIGGER_THAN) {
+            swap(this.heap, parent, index)
+            index = parent
+            parent = this.getParentIndex(index)
+        }
+    }
+
+    siftDown(index) { // 数据下移：与子节点比较，比子节点大就下移
+        let element = index
+        const left = this.getLeftIndex(index)
+        const right = this.getRightIndex(index)
+        const size = this.size()
+        if (left < size && this.compareFn(this.heap[element], this.heap[left]) > Compare.BIGGER_THAN) {
+            element = left
+        }
+        if (right < size && this.compareFn(this.heap[element], this.heap[left] > Compare.BIGGER_THAN)) {
+            element = right
+        }
+        if (index !== element) {
+            swap(this.heap, element, index)
+            this.siftDown(element)
+        }
+    }
+
+}
+
+// 数组两个值交换
+function swap(array, a, b) {
+    const temp = array[a]
+    array[a] = array[b]
+    array[b] = temp
+}
+```
+### 11.2 堆排序算法
+- 用数组创建一个最大堆用作数据源
+- 创建后，最大值会被存储在堆的第一个位置，我们将它替换为堆的最后一个值，将堆的大小减1
+- 重复将堆的根结点下移并重复步骤2直到堆的大小为1
+``` js
+function heapSort(array, compareFn = defaultCompare) { 
+    let heapSize = array.length;
+    buildMaxHeap(array, compareFn); // 步骤1
+    while (heapSize > 1) {
+        swap(array, 0, --heapSize); // 步骤2
+        heapify(array, 0, heapSize, compareFn); // 步骤3 
+    }
+    return array;
+}
+
+function buildMaxHeap(array, compareFn) {
+    for (let i = Math.floor(array.length / 2); i >= 0; i -= 1) {
+        heapify(array, i, array.length, compareFn);
+    }
+    return array
+}
+```
+
+
+
 
 
 

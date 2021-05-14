@@ -1,4 +1,4 @@
-
+# HTML --- meta
 HTML \<meta\> 元素表示那些不能由其它HTML元相关元素 (\<base\>, \<link\>, \<script\>, \<style\> 或 \<title\>) 之一表示的任何元数据信息。
 
 - `name` 属性，meta属性提供的是文档级别的元数据，应用于整个页面

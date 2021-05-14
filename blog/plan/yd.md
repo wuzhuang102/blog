@@ -5,6 +5,17 @@ sidebar: auto
 
 ## 节奏型
 
+### 专题四 前端性能优化与工程化
+- 课前
+    - [雅虎军规](/front-end/special/performance-yaho)
+- 直播
+
+### 专题三 前端工程化那些事
+- 课前
+    - [前端打包工具](/front-end/special/packaging-tool)，[webpack专题](/front-end/special/webpack)
+- 直播
+    - [jenkins](/wiki/jenkins)
+
 ### 专题二 大话NodeJS72般变化
 - 课前
     - http协议：
@@ -38,7 +49,7 @@ sidebar: auto
     
 - 书籍系列
     - 你不知道的javascript系列三册 [你不知道的JavaScript(上)](/book/code/you_dont_know_javascript_1)
-    - 学习javascript数据结构与算法
+    - 学习javascript数据结构与算法 [学习javascript数据结构与算法](/book/code/learning_javascript_data_structure_and_algorithms)
     - 漫画算法 小灰的算法之旅
     - 深入理解ES6
 
