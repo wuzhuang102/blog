@@ -5,6 +5,7 @@ const book = require("./config/book.js");
 const finance = require("./config/finance.js");
 const wiki = require("./config/wiki.js");
 const interview = require("./config/interview");
+const plan = require("./config/plan");
 
 module.exports = {
     title: "你当像鸟飞往你的山",
@@ -19,7 +20,7 @@ module.exports = {
             { text: "我的wiki", link: "/wiki/" },
             { text: "技术扩展", link: "/tool/" },
             { text: "阅读", link: "/book/" },
-            { text: "面试", link: "/interview/" },
+            // { text: "面试", link: "/interview/" },
         ],
         sidebarDepth: 2,
         sidebar: {
@@ -30,6 +31,7 @@ module.exports = {
             ...finance,
             ...wiki,
             ...interview,
+            ...plan,
         },
     },
     plugins: {
