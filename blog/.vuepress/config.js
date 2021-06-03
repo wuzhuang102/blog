@@ -6,6 +6,7 @@ const finance = require("./config/finance.js");
 const wiki = require("./config/wiki.js");
 const interview = require("./config/interview");
 const bitcoin = require("./config/bitcoin");
+const pope = require('./config/pope')
 
 module.exports = {
     title: "你当像鸟飞往你的山",
@@ -31,7 +32,8 @@ module.exports = {
             ...finance,
             ...wiki,
             ...interview,
-            ...bitcoin
+            ...bitcoin,
+            ...pope
         },
     },
     plugins: {
