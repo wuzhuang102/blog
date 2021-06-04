@@ -1,5 +1,6 @@
+# Nginx --- location
 ##  1. 路由匹配
-``` 
+```
 location [ = | ~ | ~* | ^~ ] uri { ... }
 ```
 
@@ -74,7 +75,7 @@ server {
     }
 }
 
-curl website.com/document 
+curl website.com/document
 return 702  # 正则优先度高
 ```
 #### 1.2.2 案例2 （^~ 优先度大于正则~|~*）
@@ -89,7 +90,7 @@ server {
     }
 }
 
-curl website.com/document 
+curl website.com/document
 return 701  # ^~优先度高于^~
 ```
 
@@ -105,7 +106,7 @@ server {
     }
 }
 
-curl website.com/document 
+curl website.com/document
 return 702  # 前缀匹配模式下，以长的为准，与配置文件顺序无关
 ```
 
@@ -116,13 +117,13 @@ server {
     location ~ ^/docu[a-z]+ {
         return 701;
     }
-    
+
     location ~ ^/doc[a-z]+ {
         return 702;
     }
 }
 
-curl website.com/document 
+curl website.com/document
 return 701  # 与配置文件顺序有关，匹配放在前面的一个
 ```
 

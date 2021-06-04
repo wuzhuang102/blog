@@ -1,7 +1,7 @@
 module.exports = {
     "/tool/": [
         {
-            title: "Linux",
+            title: "基础开发类",
             collapsable: false,
             children: [
                 "/tool/linux/base",
@@ -9,45 +9,23 @@ module.exports = {
                 "/tool/linux/core",
                 "/tool/linux/async",
                 // '/tool/linux/libuv'
+
+                // Git类
+                "/tool/git/",
+
+                // Nginx类
+                "/tool/nginx/",
+                "/tool/nginx/location",
+                "/tool/nginx/rewrite",
             ],
         },
         {
-            title: "Docker",
+            title: "晋级开发类",
             collapsable: false,
             children: ["/tool/docker/", "/tool/docker/software"],
         },
-        // {
-        //     title: 'Git',
-        //     collapsable: false,
-        //     children: [
-        //         ['/tool/git/', 'git']
-        //     ]
-        // },
         {
-            title: "Nginx",
-            collapsable: false,
-            children: [
-                ["/tool/nginx/", "nginx基本配置"],
-                ["/tool/nginx/location", "core - location"],
-                ["/tool/nginx/rewrite", "module - rewrite"],
-            ],
-        },
-        // {
-        //     title: 'Mysql',
-        //     collapsable: false,
-        //     children: [
-        //         ['/tool/mysql/', 'mysql基本知识'],
-        //     ]
-        // },
-        // {
-        //     title: 'PHP',
-        //     collapsable: false,
-        //     children: [
-        //         ['/tool/php/', 'php基本语法']
-        //     ]
-        // },
-        {
-            title: "前端技术扩展",
+            title: "其他",
             collapsable: false,
             children: ["/tool/extend/front-end"],
         },
