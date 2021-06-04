@@ -5,12 +5,9 @@ const book = require("./config/book.js");
 const finance = require("./config/finance.js");
 const wiki = require("./config/wiki.js");
 const interview = require("./config/interview");
-<<<<<<< HEAD
 const bitcoin = require("./config/bitcoin");
 const pope = require('./config/pope')
-=======
 const plan = require("./config/plan");
->>>>>>> e0726dcb5b7e1f94b5ddb60d76e80dadd10940ea
 
 module.exports = {
     title: "你当像鸟飞往你的山",
@@ -36,12 +33,9 @@ module.exports = {
             ...finance,
             ...wiki,
             ...interview,
-<<<<<<< HEAD
             ...bitcoin,
-            ...pope
-=======
+            ...pope,
             ...plan,
->>>>>>> e0726dcb5b7e1f94b5ddb60d76e80dadd10940ea
         },
     },
     plugins: {
