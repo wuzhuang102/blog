@@ -15,4 +15,4 @@ features:
 footer: MIT Licensed | Copyright © 2019-2021 Jack wu
 ---
 
-[个人学习计划表](/plan/technology)
+[个人学习计划表](/plan/)
