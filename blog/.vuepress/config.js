@@ -6,8 +6,9 @@ const finance = require("./config/finance.js");
 const wiki = require("./config/wiki.js");
 const interview = require("./config/interview");
 const bitcoin = require("./config/bitcoin");
-const pope = require('./config/pope')
+const pope = require("./config/pope");
 const plan = require("./config/plan");
+const blog = require("./config/blog");
 
 module.exports = {
     title: "你当像鸟飞往你的山",
@@ -21,7 +22,8 @@ module.exports = {
             { text: "算法", link: "/algorithm/" },
             { text: "我的wiki", link: "/wiki/" },
             { text: "技术扩展", link: "/tool/" },
-            { text: "阅读", link: "/book/" },
+            { text: "博文", link: "/blog/" },
+            // { text: "阅读", link: "/book/" },
             // { text: "面试", link: "/interview/" },
         ],
         sidebarDepth: 2,
@@ -36,6 +38,7 @@ module.exports = {
             ...bitcoin,
             ...pope,
             ...plan,
+            ...blog,
         },
     },
     plugins: {
