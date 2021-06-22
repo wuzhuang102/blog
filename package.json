@@ -1,0 +1,27 @@
+{
+  "name": "wz-blog",
+  "version": "1.0.0",
+  "description": "本项目是学习阶段写demo的项目的整合",
+  "main": "index.js",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-static": "^5.0.0",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuzhuang102/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wuzhuang102/blog/issues"
+  },
+  "homepage": "https://github.com/wuzhuang102/blog#readme"
+}
