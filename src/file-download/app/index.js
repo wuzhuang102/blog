@@ -3,13 +3,16 @@ const Koa = require('koa');
 const serve = require('koa-static');
 const Router = require('@koa/router');
 
-const { fileDownload } = require('./util');
+const { fileDownload, streamDownload, bufferDownload } = require('./util');
 
 const app = new Koa();
 const router = new Router();
 
 // 路由注册
-router.get('/api/download', fileDownload);
+router
+  .get('/api/download-file', fileDownload)
+  .get('/api/download-stream', streamDownload)
+  .get('/api/download-buffer', bufferDownload);
 
 // 中间件挂载
 app.use(router.routes()).use(router.allowedMethods());

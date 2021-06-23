@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <button id="download1" style="margin-bottom: 10px">点击下载1</button>
+
+    <button id="download2">点击下载2</button>
+
+    <script>
+      const url = '/api/download-stream';
+      // 方法1：直接下载
+      function download1() {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = true;
+        a.click();
+      }
+
+      // 方法2：转blob下载
+      async function download2() {
+        const a = document.createElement('a');
+        const res = await fetch(url);
+        const blob = URL.createObjectURL(await res.blob());
+        a.href = blob;
+        a.download = '自定义文件名.jpeg';
+        a.click();
+      }
+
+      document.getElementById('download1').addEventListener('click', download1);
+      document.getElementById('download2').addEventListener('click', download2);
+    </script>
+  </body>
 </html>
