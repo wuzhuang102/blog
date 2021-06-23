@@ -3,7 +3,7 @@ module.exports = {
         {
             title: "博文",
             collapsable: false,
-            children: ["/blog/daily/npm"],
+            children: ["/blog/daily/npm", "/blog/daily/download"],
         },
     ],
 };
