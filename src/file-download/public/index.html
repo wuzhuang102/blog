@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <title>文件下载demo</title>
   </head>
   <body>
     <button id="download1" style="margin-bottom: 10px">点击下载1</button>
 
-    <button id="download2">点击下载2</button>
+    <button id="download2" style="margin-bottom: 10px">点击下载2</button>
+
+    <button id="download3" style="margin-bottom: 10px">点击下载3</button>
 
     <script>
-      const url = '/api/download-stream';
+      const url = 'https://blog.bestwuzhuang.com/avatar.jpg',
+        url2 = '/api/download-stream'
       // 方法1：直接下载
       function download1() {
         const a = document.createElement('a');
@@ -21,18 +25,33 @@
         a.click();
       }
 
-      // 方法2：转blob下载
+      // 方法2：URL.createObjectURL()
       async function download2() {
         const a = document.createElement('a');
-        const res = await fetch(url);
-        const blob = URL.createObjectURL(await res.blob());
+        const res = await axios.get(url2, { responseType: 'blob' });
+        const blob = URL.createObjectURL(res.data);
         a.href = blob;
         a.download = '自定义文件名.jpeg';
         a.click();
       }
 
+      // 方法3: FileReader.readAsDataURL()
+      async function download3() {
+        const reader = new FileReader();
+        const res = await fetch(url);
+        console.log(await res.blob());
+        reader.readAsDataURL(await res.blob());
+        reader.onload = e => {
+          const a = document.createElement('a');
+          a.download = '自定义文件名.jpeg';
+          a.href = reader.result;
+          a.click();
+        };
+      }
+
       document.getElementById('download1').addEventListener('click', download1);
       document.getElementById('download2').addEventListener('click', download2);
+      document.getElementById('download3').addEventListener('click', download3);
     </script>
   </body>
 </html>

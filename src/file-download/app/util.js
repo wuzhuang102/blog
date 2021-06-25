@@ -22,6 +22,12 @@ const streamDownload = (ctx, next) => {
   next();
 };
 
-const bufferDownload = (ctx, next) => {};
+function requestPromise(options) {
+  
+}
+
+const bufferDownload = (ctx, next) => {
+
+};
 
 module.exports = { fileDownload, streamDownload, bufferDownload };
