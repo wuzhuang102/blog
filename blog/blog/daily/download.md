@@ -98,6 +98,36 @@ ctx.body = buffer;
 URL.createObjectURL()会创建一个 DOMString，其中包含一个资源对象的 URL，它的生命周期与窗口中的 document 绑定，这个 URL 表示指定的 File 对象或者 Blob 对象<br>
 参数支持 File、Blob 或者 MediaSource
 
+```js
+const a = document.createElement("a");
+const res = await fetch(url);
+const blob = URL.createObjectURL(await res.blob());
+a.href = blob;
+a.download = "自定义文件名.jpeg";
+a.click("/api/download-stream");
+```
+
+3. **FileReader.readAsDataURL()**
+
+```js
+const reader = new FileReader();
+const res = await fetch(url);
+
+reader.readAsDataURL(await res.blob());
+reader.onload = (e) => {
+    const a = document.createElement("a");
+    a.download = "自定义文件名.jpeg";
+    a.href = reader.result;
+    a.click();
+};
+```
+
+## Node 中的文件上传
+
+<br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <br/>
 
