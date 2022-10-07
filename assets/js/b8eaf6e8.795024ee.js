@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwz_blog=self.webpackChunkwz_blog||[]).push([[8282],{9557:function(s){s.exports=JSON.parse('{"plugin":{"name":"docusaurus-plugin-content-docs","id":"music"}}')}}]);
