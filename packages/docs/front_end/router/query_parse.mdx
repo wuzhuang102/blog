@@ -1,0 +1,37 @@
+# URL 参数解析
+
+## 1. location.search 字符串分割
+
+```js
+export const getAllUrlParam = url => {
+  if (url.indexOf('?') != -1) url = url.substr(1);
+  const urlArr = url.split('&');
+  const obj = {};
+  for (let i = 0; i < urlArr.length; i++) {
+    const arg = urlArr[i].split('=');
+    obj[arg[0]] = arg[1];
+  }
+  return obj;
+};
+```
+
+## 2. location.search 正则匹配
+
+```js
+function getAllParams(search) {
+  const resObj = {};
+  const reg = /(\w+)=(\w+)/g;
+  while (reg.exec(search)) {
+    resObj[RegExp.$1] ? (resObj[RegExp.$1] = [].concat(resObj[RegExp.$1], RegExp.$2)) : (resObj[RegExp.$1] = RegExp.$2);
+  }
+  return resObj;
+}
+```
+
+## 3.location.search + URLSearchParams
+
+Object.fromEntries 与 URLSearchParams 都不支持 ie， 兼容性差点
+
+```js
+Object.fromEntries(new URLSearchParams(location.search));
+```

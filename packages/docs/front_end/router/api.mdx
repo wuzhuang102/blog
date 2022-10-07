@@ -1,0 +1,82 @@
+# 浏览器路由 API 详解
+
+## 1. hash
+
+### hash 路由
+
+hash 的存在本是为了定位文档片段的位置的，除此之外也可表示路由。现代的 React、Vue 中都会提供 hash 模式的路由。
+
+:::info 提示
+设置 location.hash 属性会更新显示在地址栏中的 URL，同时会在浏览器的历史记录中添加一条记录。
+:::
+
+### hash 事件
+
+- 支持 HTML5 的浏览器中，当 URL 的 hash 变化时会触发 hashchange 事件
+
+```js
+window.onhashchange = () => {
+  console.log(location.hash);
+};
+```
+
+- 不支持 HTML5 的浏览器中，可以通过 100ms 轮训监听 url 变化来模拟
+
+```js
+(function (window) {
+  if ('onhashchange' in window) return;
+  let location = window.location,
+    oldUrl = location.href,
+    oldHash = location.hash;
+
+  setInterval(() => {
+    let newUrl = location.href,
+      newHash = location.href;
+    if (oldHash !== newHash && typeof window.onhashchange === 'function') {
+      window.onhashchange({
+        type: 'hashchange',
+        oldURL: oldUrl,
+        newURL: newUrl,
+      });
+      oldUrl = newUrl;
+      oldHash = newHash;
+    }
+  }, 100);
+})(window);
+```
+
+## 2. History
+
+### History API
+
+1. history.pushState、history.replaceState：都接收三个参数
+
+:::info
+使用这两个方法会改变地址栏，但是页面内容不会刷新
+:::
+
+- 状态对象：
+- 标题：
+- 地址：可以使相对路径，也可以是绝对路径。需同源
+
+2. 其他：back()、forward()、go()
+
+### history 事件 - popstate
+
+当用户通过“前进”和“后退”按钮浏览保存的历史状态时，浏览器会触发一个 popstate 事件
+
+```js
+window.onpopstate = function (state) {
+  console.log(state);
+};
+```
+
+## 3. Location
+
+### Location API
+
+- location.assign：加载指定 url
+- location.replace：替换成指定 url，被替换的不会出现在 History 中
+- location.reload(bool)：重新加载页面
+  - true：所有数据从服务器上从新请求
+  - false：浏览器会走缓存机制

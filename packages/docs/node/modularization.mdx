@@ -1,0 +1,65 @@
+# 模块化规范
+
+## 1 CommonJS 规范
+
+### 1.1 简介
+
+- **CommonJS 模块化加载时同步的**
+
+  - 需要等待模块化加载完毕后，后面的逻辑才会执行
+  - NodeJS 加载没什么问题，都是本地的；web 端项目不合适，js 加载时间就是卡顿时间。
+
+- 模块在第一次引入时，模块中的 js 会被执行一次；多次加载也只会加载一次
+
+### 1.2 require 具体路径
+
+require(X)
+
+- X 是 node 核心模块，比如 `http`、`path`
+  - 直接返回模块核心，挺支持查找
+- X 是以 `./`、`../`、`/` 开头的
+  - 在对应目录下查找
+  - 有后缀名，按照后缀名查找
+  - 没有后缀
+    - 查找文件本身
+    - 查找 X.js
+    - 查找 X.json
+    - 查找 X.node
+- X 不是路径也不是核心模块
+  - 查找`node_modules` 中是否包含 X
+  - 找不到，抛出 not found
+
+## 2 ES Module 规范
+
+### 导入导出
+
+```js
+/** 模块导出 **/
+export const name = 'wuzhuang'
+export function foo() {}
+export class Person {}
+
+export { name, foo }
+export { name as myName, foo as myFoo }
+
+export { foo } from './index'
+export * from './index'
+
+/** 模块导入 **/
+import { name, foo } from './index'
+import { name as myName } from './index'
+import * as foo from './index'
+```
+
+### default 用法
+
+```js
+export { foo as default }
+export default foo
+
+import foo from './index'
+```
+
+## 3 AMD 规范
+
+## 4 CMD 规范

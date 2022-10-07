@@ -1,0 +1,27 @@
+# Linux 命令
+
+## Curl
+
+只记录一些常用的，详细的见[https://catonmat.net/cookbooks/curl](https://catonmat.net/cookbooks/curl)
+
+```bash
+# -X：指定请求方法
+$ curl -X POST https://google.com
+
+# -H：添加 HTTP 请求头
+$ curl -H 'Accept-language: en-US' -H 'Secret-Message: xyzzy' https://google.com
+
+# -d：用于 POST 请求数据体
+$ curl -d 'name=test' -d 'password=test' -X POST https://google.com
+$ curl -d 'name=test&password=test' -X POST https://google.com
+
+# -b：发送cookie
+$ curl -b 'foo=1;name=2' https://google.com
+
+# -v：输出整个通信过程，用于调试，--trace 同理
+$ curl -v https://google.com
+$ curl --trace https://google.com
+
+#: --limit-rate：限制带宽
+$ curl --limit-rate 200k https://google.com
+```
